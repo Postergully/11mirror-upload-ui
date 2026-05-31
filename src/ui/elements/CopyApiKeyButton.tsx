@@ -8,10 +8,10 @@ import { trackEvent } from "@/modules/analytics";
 export default function CopyApiKeyButton({
   apiKey,
 }: {
-  apiKey: { key: string };
+  apiKey: { key?: string; api_key?: string };
 }) {
-  function copyApiKey(apiKey: { key: string }) {
-    navigator.clipboard.writeText(apiKey.key);
+  function copyApiKey(apiKey: { key?: string; api_key?: string }) {
+    navigator.clipboard.writeText(apiKey.key ?? apiKey.api_key ?? "");
     trackEvent({ pageName: "API Keys", eventName: "api_key_copied" });
     notifications.show({
       title: "Copied API key to clipboard",

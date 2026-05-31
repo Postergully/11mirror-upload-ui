@@ -109,6 +109,7 @@ export default function DatasetDetailPage({ datasetId }: { datasetId: string }) 
         });
         setLibrarianPath("");
         try {
+          if (!cogniInstance) return;
           const data = await getDatasetData(datasetId, cogniInstance);
           setFiles(Array.isArray(data) ? data : []);
         } catch {}
